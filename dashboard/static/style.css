@@ -1,0 +1,48 @@
+body {
+  background:#0f172a;
+  color:#e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+.nav {
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#020617;
+}
+
+.container {
+  padding:20px;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td {
+  padding:10px;
+  border-bottom:1px solid #334155;
+}
+
+input {
+  padding:8px;
+  width:100%;
+  margin-bottom:10px;
+}
+
+.crit { color:#dc2626; }
+.high { color:#ef4444; }
+
+.login-bg {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.login-box {
+  background:#020617;
+  padding:30px;
+  border-radius:10px;
+}

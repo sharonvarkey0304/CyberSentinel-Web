@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+lxml
+jinja2
+typer
+rich
+fastapi
+uvicorn
+python-dotenv

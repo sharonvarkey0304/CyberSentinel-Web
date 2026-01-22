@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AutoPwn-Web Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="nav">
+  <h2>AutoPwn-Web</h2>
+  <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+  <input id="search" placeholder="Search target or ID..." onkeyup="filterScans()">
+
+  <table id="scanTable">
+    <tr>
+      <th>ID</th>
+      <th>Target</th>
+      <th>Findings</th>
+      <th>Critical</th>
+      <th>High</th>
+      <th>Report</th>
+    </tr>
+    {% for s in scans %}
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.target }}</td>
+      <td>{{ s.findings_unique }}</td>
+      <td class="crit">{{ s.severity_critical }}</td>
+      <td class="high">{{ s.severity_high }}</td>
+      <td>
+        <a href="/dashboard/scan/{{ s.id }}">View</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<script src="/static/dashboard.js"></script>
+</body>
+</html>

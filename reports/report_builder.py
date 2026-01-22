@@ -1,0 +1,185 @@
+"""
+report_builder.py
+-----------------
+Generates a styled HTML vulnerability report with charts.
+Each scan creates a new date-stamped report file.
+"""
+
+import html
+from pathlib import Path
+from datetime import datetime
+from collections import Counter
+
+
+def build_report(target, endpoints, findings):
+    Path("reports").mkdir(exist_ok=True)
+
+    # Date-based filename (NO overwrite)
+    now = datetime.now()
+    date_str = now.strftime("%d-%b-%Y_%H-%M-%S")
+    report_path = f"reports/report_{date_str}.html"
+
+    # === Chart data ===
+    severity_counts = Counter(v.get("severity", "Low") for v in findings)
+    issue_counts = Counter(v.get("issue", "Unknown") for v in findings)
+
+    max_severity = max(severity_counts.values(), default=1)
+    max_issue = max(issue_counts.values(), default=1)
+
+    with open(report_path, "w", encoding="utf-8") as f:
+        f.write(f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoPwn-Web Scan Report</title>
+    <style>
+        body {{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f172a;
+            color: #e5e7eb;
+            padding: 30px;
+        }}
+        h1 {{ color: #38bdf8; }}
+        h2 {{
+            margin-top: 30px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 5px;
+        }}
+        h3 {{ margin-top: 20px; }}
+
+        .meta {{
+            background: #020617;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }}
+
+        .finding {{
+            background: #020617;
+            border-left: 6px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }}
+
+        .severity-Critical {{ border-left-color: #dc2626; }}
+        .severity-High {{ border-left-color: #ef4444; }}
+        .severity-Medium {{ border-left-color: #f59e0b; }}
+        .severity-Low {{ border-left-color: #22c55e; }}
+
+        .label {{
+            font-weight: bold;
+            color: #93c5fd;
+        }}
+
+        code {{
+            background: #020617;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fca5a5;
+        }}
+
+        footer {{
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #94a3b8;
+        }}
+
+        /* === Charts === */
+        .chart {{ margin-top: 20px; }}
+        .bar {{
+            margin: 8px 0;
+            background: #020617;
+            border-radius: 6px;
+            overflow: hidden;
+        }}
+        .bar span {{
+            display: block;
+            padding: 6px 10px;
+            font-weight: bold;
+            color: #020617;
+        }}
+        .Critical {{ background: #dc2626; }}
+        .High {{ background: #ef4444; }}
+        .Medium {{ background: #f59e0b; }}
+        .Low {{ background: #22c55e; }}
+        .IssueBar {{ background: #38bdf8; }}
+    </style>
+</head>
+<body>
+
+<h1>CyberSentinel Web Scan Report</h1>
+
+<div class="meta">
+    <p><span class="label">Target:</span> {html.escape(target)}</p>
+    <p><span class="label">Scan Date:</span> {now.strftime("%d %B %Y, %H:%M:%S")}</p>
+    <p><span class="label">Endpoints Discovered:</span> {len(endpoints)}</p>
+    <p><span class="label">Total Findings:</span> {len(findings)}</p>
+</div>
+
+<h2>Scan Statistics</h2>
+
+<h3>Findings by Severity</h3>
+<div class="chart">
+""")
+
+        for sev, count in severity_counts.items():
+            width = int((count / max_severity) * 100)
+            f.write(
+                f"<div class='bar'><span class='{sev}' style='width:{width}%'>{sev}: {count}</span></div>"
+            )
+
+        f.write("""
+</div>
+
+<h3>Findings by Vulnerability Type</h3>
+<div class="chart">
+""")
+
+        for issue, count in issue_counts.items():
+            width = int((count / max_issue) * 100)
+            safe_issue = html.escape(issue)
+            f.write(
+                f"<div class='bar'><span class='IssueBar' style='width:{width}%'>{safe_issue}: {count}</span></div>"
+            )
+
+        f.write("""
+</div>
+
+<h2>Detailed Findings</h2>
+""")
+
+        if not findings:
+            f.write("<p>No vulnerabilities detected.</p>")
+
+        for v in findings:
+            severity = html.escape(v.get("severity", "Low"))
+            issue = html.escape(v.get("issue", ""))
+
+            f.write(f"""
+<div class="finding severity-{severity}">
+    <p><span class="label">Issue:</span> {issue}</p>
+    <p><span class="label">Severity:</span> {severity}</p>
+""")
+
+            for key, value in v.items():
+                if key not in ["issue", "severity"]:
+                    safe_key = html.escape(key.capitalize())
+                    safe_value = html.escape(str(value))
+                    f.write(
+                        f"<p><span class='label'>{safe_key}:</span> "
+                        f"<code>{safe_value}</code></p>"
+                    )
+
+            f.write("</div>")
+
+        f.write("""
+<footer>
+    <p>Generated by CyberSentinel Web – Educational Automated Penetration Testing Framework</p>
+</footer>
+
+</body>
+</html>
+""")
+
+    return report_path

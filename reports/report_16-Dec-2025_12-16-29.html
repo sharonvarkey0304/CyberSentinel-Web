@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoPwn-Web Scan Report</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f172a;
+            color: #e5e7eb;
+            padding: 30px;
+        }
+        h1 {
+            color: #38bdf8;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 5px;
+        }
+        .meta {
+            background: #020617;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .finding {
+            background: #020617;
+            border-left: 6px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+        .severity-High { border-left-color: #ef4444; }
+        .severity-Critical { border-left-color: #dc2626; }
+        .severity-Medium { border-left-color: #f59e0b; }
+        .severity-Low { border-left-color: #22c55e; }
+
+        .label {
+            font-weight: bold;
+            color: #93c5fd;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+        code {
+            background: #020617;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fca5a5;
+        }
+    </style>
+</head>
+<body>
+
+<h1>AutoPwn-Web Vulnerability Scan Report</h1>
+
+<div class="meta">
+    <p><span class="label">Target:</span> http://127.0.0.1:3000</p>
+    <p><span class="label">Scan Date:</span> 16 December 2025, 12:16:29</p>
+    <p><span class="label">Endpoints Discovered:</span> 8</p>
+    <p><span class="label">Total Findings:</span> 21</p>
+</div>
+
+<h2>Findings</h2>
+
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p></div>
+<div class="finding severity-Critical">
+    <p><span class="label">Issue:</span> SQL Injection</p>
+    <p><span class="label">Severity:</span> Critical</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products/search</code></p><p><span class='label'>Parameter:</span> <code>q</code></p><p><span class='label'>Payload:</span> <code>&#x27; OR 1=1--</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Missing CSRF Protection</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameters:</span> <code>[&#x27;email&#x27;, &#x27;password&#x27;]</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Missing Security Header</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Header:</span> <code>Content-Security-Policy</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Missing Security Header</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Header:</span> <code>Referrer-Policy</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Missing Security Header</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Header:</span> <code>Permissions-Policy</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Potential IDOR</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products/search</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/whoami</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/api/Feedbacks</code></p></div>
+<footer>
+    <p>Generated by AutoPwn-Web – Educational Automated Penetration Testing Framework</p>
+</footer>
+
+</body>
+</html>

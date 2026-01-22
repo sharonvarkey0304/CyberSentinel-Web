@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan {{ scan_id }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="nav">
+  <a href="/dashboard">← Back</a>
+</div>
+
+<h2>Findings for Scan {{ scan_id }}</h2>
+
+<input id="search" placeholder="Filter findings..." onkeyup="filterFindings()">
+
+<table id="findingsTable">
+  <tr>
+    <th>Issue</th>
+    <th>Severity</th>
+    <th>Score</th>
+    <th>Endpoint</th>
+  </tr>
+  {% for f in findings %}
+  <tr class="{{ f.severity }}">
+    <td>{{ f.issue }}</td>
+    <td>{{ f.severity }}</td>
+    <td>{{ f.score }}</td>
+    <td>{{ f.endpoint }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<script src="/static/dashboard.js"></script>
+</body>
+</html>

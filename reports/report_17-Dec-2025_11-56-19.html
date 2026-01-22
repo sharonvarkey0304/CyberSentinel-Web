@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoPwn-Web Scan Report</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f172a;
+            color: #e5e7eb;
+            padding: 30px;
+        }
+        h1 { color: #38bdf8; }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 5px;
+        }
+        h3 { margin-top: 20px; }
+
+        .meta {
+            background: #020617;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .finding {
+            background: #020617;
+            border-left: 6px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .severity-Critical { border-left-color: #dc2626; }
+        .severity-High { border-left-color: #ef4444; }
+        .severity-Medium { border-left-color: #f59e0b; }
+        .severity-Low { border-left-color: #22c55e; }
+
+        .label {
+            font-weight: bold;
+            color: #93c5fd;
+        }
+
+        code {
+            background: #020617;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fca5a5;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+
+        /* === Charts === */
+        .chart { margin-top: 20px; }
+        .bar {
+            margin: 8px 0;
+            background: #020617;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .bar span {
+            display: block;
+            padding: 6px 10px;
+            font-weight: bold;
+            color: #020617;
+        }
+        .Critical { background: #dc2626; }
+        .High { background: #ef4444; }
+        .Medium { background: #f59e0b; }
+        .Low { background: #22c55e; }
+        .IssueBar { background: #38bdf8; }
+    </style>
+</head>
+<body>
+
+<h1>AutoPwn-Web Vulnerability Scan Report</h1>
+
+<div class="meta">
+    <p><span class="label">Target:</span> http://127.0.0.1:3000</p>
+    <p><span class="label">Scan Date:</span> 17 December 2025, 11:56:19</p>
+    <p><span class="label">Endpoints Discovered:</span> 8</p>
+    <p><span class="label">Total Findings:</span> 21</p>
+</div>
+
+<h2>Scan Statistics</h2>
+
+<h3>Findings by Severity</h3>
+<div class="chart">
+<div class='bar'><span class='Medium' style='width:13%'>Medium: 2</span></div><div class='bar'><span class='Low' style='width:20%'>Low: 3</span></div><div class='bar'><span class='Critical' style='width:6%'>Critical: 1</span></div><div class='bar'><span class='High' style='width:100%'>High: 15</span></div>
+</div>
+
+<h3>Findings by Vulnerability Type</h3>
+<div class="chart">
+<div class='bar'><span class='IssueBar' style='width:6%'>Potential IDOR: 1</span></div><div class='bar'><span class='IssueBar' style='width:20%'>Exposed API Endpoint: 3</span></div><div class='bar'><span class='IssueBar' style='width:6%'>Missing CSRF Protection: 1</span></div><div class='bar'><span class='IssueBar' style='width:6%'>SQL Injection: 1</span></div><div class='bar'><span class='IssueBar' style='width:100%'>Reflected XSS: 15</span></div>
+</div>
+
+<h2>Detailed Findings</h2>
+
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Potential IDOR</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Fingerprint:</span> <code>5c39926033d6dc76</code></p><p><span class='label'>Score:</span> <code>5.2</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products/search</code></p><p><span class='label'>Fingerprint:</span> <code>ba58f62896f0d730</code></p><p><span class='label'>Score:</span> <code>2.5</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/whoami</code></p><p><span class='label'>Fingerprint:</span> <code>9cae1e56bde16234</code></p><p><span class='label'>Score:</span> <code>2.5</code></p></div>
+<div class="finding severity-Low">
+    <p><span class="label">Issue:</span> Exposed API Endpoint</p>
+    <p><span class="label">Severity:</span> Low</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/api/Feedbacks</code></p><p><span class='label'>Fingerprint:</span> <code>ab9a27e16c838ad0</code></p><p><span class='label'>Score:</span> <code>2.5</code></p></div>
+<div class="finding severity-Medium">
+    <p><span class="label">Issue:</span> Missing CSRF Protection</p>
+    <p><span class="label">Severity:</span> Medium</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameters:</span> <code>[&#x27;email&#x27;, &#x27;password&#x27;]</code></p><p><span class='label'>Fingerprint:</span> <code>00caeb5dc6712bc3</code></p><p><span class='label'>Score:</span> <code>5.0</code></p></div>
+<div class="finding severity-Critical">
+    <p><span class="label">Issue:</span> SQL Injection</p>
+    <p><span class="label">Severity:</span> Critical</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products/search</code></p><p><span class='label'>Parameter:</span> <code>q</code></p><p><span class='label'>Payload:</span> <code>&#x27; OR 1=1--</code></p><p><span class='label'>Fingerprint:</span> <code>3b52063bd58ba6c7</code></p><p><span class='label'>Score:</span> <code>10.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>9c13aac4f77f00d2</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>56ba350d3dc6623e</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/products</code></p><p><span class='label'>Parameter:</span> <code>limit</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>6906f55a548f0747</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>fddad5def042404b</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>d7cb7b5eb31ff0ec</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>email</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>fcdc88c46d66b601</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>02a41efac7f071c3</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>5bcda7d07d13d718</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/user/login</code></p><p><span class='label'>Parameter:</span> <code>password</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>e32e1b28ac30f8cd</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>c22ca73412544c88</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>0864bef80c551960</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/basket</code></p><p><span class='label'>Parameter:</span> <code>id</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>9723e1b8c536584f</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/orders</code></p><p><span class='label'>Parameter:</span> <code>orderId</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SVG_&lt;svg/onload=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>d45fe426f0f24470</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/orders</code></p><p><span class='label'>Parameter:</span> <code>orderId</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_IMG_&lt;img src=x onerror=alert(1)&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>dc71cb5f59378379</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<div class="finding severity-High">
+    <p><span class="label">Issue:</span> Reflected XSS</p>
+    <p><span class="label">Severity:</span> High</p>
+<p><span class='label'>Endpoint:</span> <code>http://127.0.0.1:3000/rest/orders</code></p><p><span class='label'>Parameter:</span> <code>orderId</code></p><p><span class='label'>Payload:</span> <code>XSS_PAYLOAD_SCRIPT_&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><p><span class='label'>Fingerprint:</span> <code>45407cec3278d7f6</code></p><p><span class='label'>Score:</span> <code>8.0</code></p></div>
+<footer>
+    <p>Generated by AutoPwn-Web – Educational Automated Penetration Testing Framework</p>
+</footer>
+
+</body>
+</html>
